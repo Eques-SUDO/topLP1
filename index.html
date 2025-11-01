@@ -195,133 +195,6 @@
             display: block;
         }
 
-        /* Testimonials Section */
-        .testimonials-section {
-            background-color: #ff3333;
-            padding: 0;
-            max-width: 450px;
-            margin: 0 auto;
-        }
-
-        .testimonials-section h2 {
-            color: white;
-            text-align: center;
-            font-size: 32px;
-            font-weight: bold;
-            margin: 0;
-            padding: 20px 0;
-            text-transform: uppercase;
-        }
-
-        .testimonials-container {
-            position: relative;
-            overflow: hidden;
-            padding: 0;
-        }
-
-        .testimonial {
-            display: none;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 0;
-            padding: 20px 15px;
-            margin: 0 auto;
-            max-width: 450px;
-        }
-
-        .testimonial.active {
-            display: block;
-            animation: slideIn 0.8s forwards;
-        }
-
-        @keyframes slideIn {
-            0% {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .testimonial p {
-            color: white;
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 10px;
-            font-style: italic;
-            position: relative;
-        }
-
-        .testimonial p::before,
-        .testimonial p::after {
-            content: '"';
-            font-size: 48px;
-            position: absolute;
-            opacity: 0.3;
-            font-family: Georgia, serif;
-        }
-
-        .testimonial p::before {
-            left: -10px;
-            top: -20px;
-        }
-
-        .testimonial p::after {
-            right: -10px;
-            bottom: -40px;
-        }
-
-        .testimonial .author {
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
-            margin-top: 20px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .testimonial .author::before {
-            content: '';
-            position: absolute;
-            width: 30px;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.6);
-            top: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .carousel-dots {
-            text-align: center;
-            margin-top: 15px;
-            padding-bottom: 15px;
-        }
-
-        .dot {
-            height: 10px;
-            width: 10px;
-            margin: 0 6px;
-            background-color: rgba(255, 255, 255, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            display: inline-block;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .dot:hover {
-            background-color: rgba(255, 255, 255, 0.5);
-        }
-
-        .dot.active {
-            background-color: white;
-            border-color: white;
-            transform: scale(1.2);
-        }
-
         /* Responsive Design */
         @media (max-width: 768px) {
             .form-container {
@@ -335,14 +208,6 @@
             .submit-btn {
                 font-size: 16px;
                 padding: 12px 25px;
-            }
-
-            .testimonials-section {
-                padding: 0;
-            }
-
-            .testimonial {
-                padding: 15px;
             }
         }
 
@@ -380,29 +245,6 @@
                     <image href="Copie de Top minceur amincissement .svg" x="0" y="0" width="450" height="4080" style="clip-path: inset(40% 0 40% 0);"/>
                 </svg>
             </a>
-        </div>
-
-        <!-- Testimonials Section -->
-        <div class="testimonials-section">
-            <div class="testimonials-container">
-                <div class="testimonial active">
-                    <p>"Un service exceptionnel ! Les résultats sont exactement ce que j'espérais. L'équipe est très professionnelle et attentionnée."</p>
-                    <div class="author">- Marie L.</div>
-                </div>
-                <div class="testimonial">
-                    <p>"Je suis ravie d'avoir choisi Top Minceur. Le processus était simple et efficace. Je recommande vivement !"</p>
-                    <div class="author">- Sophie M.</div>
-                </div>
-                <div class="testimonial">
-                    <p>"Une expérience vraiment positive. Les résultats sont impressionnants et le personnel est très compétent."</p>
-                    <div class="author">- Camille D.</div>
-                </div>
-            </div>
-            <div class="carousel-dots">
-                <span class="dot active" onclick="currentSlide(0)"></span>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
-            </div>
         </div>
 
         <!-- Form Call-to-Action Section -->
@@ -527,32 +369,6 @@
                 submitButton.textContent = originalButtonText;
             });
         }
-
-        // Testimonials Carousel
-        let currentIndex = 0;
-        const testimonials = document.querySelectorAll('.testimonial');
-        const dots = document.querySelectorAll('.dot');
-
-        function showSlide(index) {
-            testimonials.forEach((testimonial, i) => {
-                testimonial.classList.remove('active');
-                dots[i].classList.remove('active');
-            });
-
-            currentIndex = index;
-            testimonials[currentIndex].classList.add('active');
-            dots[currentIndex].classList.add('active');
-        }
-
-        function currentSlide(index) {
-            showSlide(index);
-        }
-
-        // Auto-play carousel
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % testimonials.length;
-            showSlide(currentIndex);
-        }, 5000);
 
     </script>
 </body>
