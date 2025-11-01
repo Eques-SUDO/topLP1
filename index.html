@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Minceur - Pack Body Winter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0;
+        }
+
+        .section img {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            display: block;
+        }
+
+        .section svg {
+            width: 100%;
+            max-width: 450px;
+            height: auto;
+            display: block;
+        }
+
+        .section a {
+            display: block;
+            cursor: pointer;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .section.clickable {
+            cursor: pointer;
+        }
+
+        /* Fade effect for hero continuation image */
+        .section .hero-continuation {
+            position: relative;
+        }
+
+        .section .hero-continuation::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.7), transparent);
+            pointer-events: none;
+        }
+
+        /* Map Section Styles */
+        .map-section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 0;
+        }
+
+        .map-container {
+            width: 100%;
+            max-width: 450px;
+            height: 350px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* Contact Form Styles */
+        .contact-form-section {
+            background-color: #ffffff;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form-container {
+            max-width: 450px;
+            width: 100%;
+            background-color: #FAF0E6;
+            padding: 30px 50px;
+            border-radius: 0;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h2 {
+            color: #ff3333;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 15px;
+            transition: border-color 0.3s ease;
+            font-family: 'Arial', sans-serif;
+            background-color: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ff3333;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #999;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #ff3333;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .submit-btn:hover {
+            background-color: #cc0000;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 51, 51, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            background-color: #ff3333;
+            padding: 0;
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .testimonials-section h2 {
+            color: white;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0;
+            padding: 20px 0;
+            text-transform: uppercase;
+        }
+
+        .testimonials-container {
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+        }
+
+        .testimonial {
+            display: none;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 0;
+            padding: 20px 15px;
+            margin: 0 auto;
+            max-width: 450px;
+        }
+
+        .testimonial.active {
+            display: block;
+            animation: slideIn 0.8s forwards;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .testimonial p {
+            color: white;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            font-style: italic;
+            position: relative;
+        }
+
+        .testimonial p::before,
+        .testimonial p::after {
+            content: '"';
+            font-size: 48px;
+            position: absolute;
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial p::before {
+            left: -10px;
+            top: -20px;
+        }
+
+        .testimonial p::after {
+            right: -10px;
+            bottom: -40px;
+        }
+
+        .testimonial .author {
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .testimonial .author::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.6);
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .carousel-dots {
+            text-align: center;
+            margin-top: 15px;
+            padding-bottom: 15px;
+        }
+
+        .dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 6px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .dot.active {
+            background-color: white;
+            border-color: white;
+            transform: scale(1.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            .form-header h2 {
+                font-size: 24px;
+            }
+
+            .submit-btn {
+                font-size: 16px;
+                padding: 12px 25px;
+            }
+
+            .testimonials-section {
+                padding: 0;
+            }
+
+            .testimonial {
+                padding: 15px;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="section clickable">
+            <a href="#contactForm">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 816" preserveAspectRatio="xMidYMid slice">
+                    <use href="Copie de Top minceur amincissement .svg#root" x="0" y="0"/>
+                    <image href="Copie de Top minceur amincissement .svg" x="0" y="0" width="450" height="4080" style="clip-path: inset(0 0 80% 0);"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Pack Découverte Section -->
+        <div class="section">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 816 450 816" preserveAspectRatio="xMidYMid slice">
+                <image href="Copie de Top minceur amincissement .svg" x="0" y="0" width="450" height="4080" style="clip-path: inset(20% 0 60% 0);"/>
+            </svg>
+        </div>
+
+        <!-- Engagement Section -->
+        <div class="section" style="margin-bottom: 0;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 1632 450 816" preserveAspectRatio="xMidYMid slice">
+                <image href="Copie de Top minceur amincissement .svg" x="0" y="0" width="450" height="4080" style="clip-path: inset(40% 0 40% 0);"/>
+            </svg>
+        </div>
+
+        <!-- Testimonials Section -->
+        <div class="testimonials-section">
+            <div class="testimonials-container">
+                <div class="testimonial active">
+                    <p>"Un service exceptionnel ! Les résultats sont exactement ce que j'espérais. L'équipe est très professionnelle et attentionnée."</p>
+                    <div class="author">- Marie L.</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Je suis ravie d'avoir choisi Top Minceur. Le processus était simple et efficace. Je recommande vivement !"</p>
+                    <div class="author">- Sophie M.</div>
+                </div>
+                <div class="testimonial">
+                    <p>"Une expérience vraiment positive. Les résultats sont impressionnants et le personnel est très compétent."</p>
+                    <div class="author">- Camille D.</div>
+                </div>
+            </div>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(0)"></span>
+                <span class="dot" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+            </div>
+        </div>
+
+        <!-- Form Call-to-Action Section -->
+        <div class="section clickable">
+            <a href="#contactForm">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 2448 450 816" preserveAspectRatio="xMidYMid slice">
+                    <image href="Copie de Top minceur amincissement .svg" x="0" y="0" width="450" height="4080" style="clip-path: inset(60% 0 20% 0);"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Contact Form Section -->
+        <div class="contact-form-section">
+            <div class="form-container">
+                <div id="successMessage" class="success-message">
+                    Merci ! Votre demande a été envoyée avec succès. Nous vous contacterons dans les plus brefs délais.
+                </div>
+
+                <div class="form-header">
+                    <h2>Réservez Votre Séance</h2>
+                </div>
+
+                <form id="contactForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <input type="text" id="nom" name="nom" required placeholder="Nom Complet *">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" id="telephone" name="telephone" required placeholder="Téléphone *">
+                    </div>
+
+                    <div class="form-group">
+                        <textarea id="message" name="message" required placeholder="Votre message *"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Envoyer ma demande</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- FAQ and Footer Section -->
+        <div class="section">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 3264 450 816" preserveAspectRatio="xMidYMid slice">
+                <image href="Copie de Top minceur amincissement .svg" x="0" y="0" width="450" height="4080" style="clip-path: inset(80% 0 0 0);"/>
+            </svg>
+        </div>
+    </div>
+
+    <script>
+        // Google Sheets Integration
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzRkeYfyyS0jZW4vrqHJo-FjyEuPxvIe36TLZJuMFYf9-2nPTogoOiLHiz3w6uqtxUfeg/exec';
+
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            // Disable submit button and show loading state
+            const submitButton = event.target.querySelector('.submit-btn');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Envoi en cours...';
+
+            // Get form data
+            const formData = new FormData(event.target);
+            const data = {
+                timestamp: new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' }),
+                nom: formData.get('nom'),
+                telephone: formData.get('telephone'),
+                message: formData.get('message'),
+                source: window.location.href
+            };
+
+            // Log form data to console
+            console.log('Form submitted with data:', data);
+
+            // Create URL-encoded form data for Google Sheets
+            const params = new URLSearchParams(data);
+
+            // Send to Google Sheets
+            fetch(GOOGLE_SHEETS_URL + '?' + params.toString(), {
+                method: 'GET',
+                mode: 'no-cors'
+            })
+            .then(response => {
+                // Show success message
+                const successMessage = document.getElementById('successMessage');
+                successMessage.classList.add('show');
+
+                // Reset form
+                event.target.reset();
+
+                // Scroll to success message
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+
+                // Reset button state
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+
+                // Send webhook notification if needed
+                try {
+                    fetch('https://hook.eu1.make.com/YOUR_WEBHOOK_ID', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+                } catch (webhookError) {
+                    console.error('Webhook notification failed:', webhookError);
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Une erreur est survenue. Veuillez réessayer.');
+                
+                // Reset button state on error
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            });
+        }
+
+        // Testimonials Carousel
+        let currentIndex = 0;
+        const testimonials = document.querySelectorAll('.testimonial');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(index) {
+            testimonials.forEach((testimonial, i) => {
+                testimonial.classList.remove('active');
+                dots[i].classList.remove('active');
+            });
+
+            currentIndex = index;
+            testimonials[currentIndex].classList.add('active');
+            dots[currentIndex].classList.add('active');
+        }
+
+        function currentSlide(index) {
+            showSlide(index);
+        }
+
+        // Auto-play carousel
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % testimonials.length;
+            showSlide(currentIndex);
+        }, 5000);
+
+    </script>
+</body>
+</html>
