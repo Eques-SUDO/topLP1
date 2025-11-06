@@ -295,7 +295,7 @@
 
     <script>
         // Google Sheets Integration
-        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzRkeYfyyS0jZW4vrqHJo-FjyEuPxvIe36TLZJuMFYf9-2nPTogoOiLHiz3w6uqtxUfeg/exec';
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzCMo-zAXvKFK9-S0BQDqZzcV4roULeKKILOWLyH8q6-GMkShsbOW3Uv_Mex13X1zLL6Q/exec';
 
         function handleSubmit(event) {
             event.preventDefault();
@@ -312,8 +312,7 @@
                 timestamp: new Date().toLocaleString('fr-FR', { timeZone: 'Europe/Paris' }),
                 nom: formData.get('nom'),
                 telephone: formData.get('telephone'),
-                message: formData.get('message'),
-                source: window.location.href
+                message: formData.get('message')
             };
 
             // Log form data to console
